@@ -1,0 +1,32 @@
+{
+  "name": "bey-compiler",
+  "version": "1.0.0",
+  "description": "Beyblade parts lister",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "webpack --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Statdk/bey-compiler.git"
+  },
+  "author": "Statdk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Statdk/bey-compiler/issues"
+  },
+  "homepage": "https://github.com/Statdk/bey-compiler#readme",
+  "devDependencies": {
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.8.1",
+    "ejs": "^3.1.9",
+    "electron": "^25.5.0",
+    "vue": "^3.3.4",
+    "vue-loader": "^17.2.2",
+    "vue-style-loader": "^4.1.3",
+    "vue-template-compiler": "^2.7.14",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4"
+  }
+}
