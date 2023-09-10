@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Bey Compiler</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <style>
+      h2 {
+        text-align: center;
+        margin: auto;
+      }
+
+      .panel {
+        display: inline-block;
+
+        margin: 15px;
+        padding: 15px;
+
+        background-color: #00000022;
+        border: 1px solid black;
+        border-radius: 10px;
+      }
+
+      .panelTxt {
+        margin: 5px;
+        padding: 15px;
+
+        height: auto;
+        width: auto;
+      }
+      .panelBtn {
+        margin: 5px;
+        padding: 5px;
+
+        height: fit-content;
+        width: fit-content;
+      }
+
+      .ListBox {
+        display: flex;
+        flex-wrap: wrap;
+
+        margin: 20px;
+        padding: 15px;
+        min-height: 50px;
+
+        border: 1px solid black;
+        border-radius: 20px;
+      }
+      .ListItem {
+        margin: 5px;
+        padding: 10px;
+        padding-right: 15px;
+
+        height: fit-content;
+
+        border: 1px solid black;
+        border-radius: 5px;
+      }
+      .ListItemName {
+        font-weight: bold;
+        margin: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="panel">
+        <input
+          class="panelTxt"
+          type="text"
+          id="partName"
+          placeholder="Enter a Name..."
+        />
+        <div>
+          <input
+            class="panelTxt"
+            type="text"
+            id="partType"
+            placeholder="Enter a Type..."
+          />
+          <input
+            class="panelTxt"
+            type="text"
+            id="partGen"
+            placeholder="Enter a Generation..."
+          />
+        </div>
+        <button
+          class="panelBtn"
+          onclick="createListItem({
+          name: document.getElementById('partName').value,
+          type: document.getElementById('partType').value,
+          generation: document.getElementById('partGen').value
+        }, 'parts')"
+        >
+          Create Part
+        </button>
+      </div>
+      <h2>Parts List</h2>
+      <div class="ListBox" id="parts"></div>
+    </div>
+  </body>
+  <script>
+    function updateList(elementID, listName) {
+      const listContentRaw = localStorage.getItem(listName);
+
+      if (listContentRaw === null) {
+        localStorage.setItem(listName, JSON.stringify({ list: [] }));
+        console.error(`${listName} is null`);
+        return;
+      }
+
+      let listContent = JSON.parse(listContentRaw);
+
+      const listElement = document.getElementById(elementID);
+      listElement.innerHTML = "";
+
+      console.log(listContent);
+      for (item of listContent.list) {
+        listElement.innerHTML += `
+        <div class="ListItem">
+          <div class="ListItemName">${item.name}</div>
+          <ul>
+            <li>Type: ${item.type}</li>
+            <li>Gen: ${item.generation}</li>
+          </ul>
+          <button onclick="removeListItem('${item.name}', '${listName}')">Delete</button>
+        </div>`;
+      }
+    }
+
+    function createListItem(item, listName) {
+      console.log(item);
+      console.log(listName);
+      const listContentRaw = localStorage.getItem(listName);
+
+      let listContent =
+        listContentRaw === null ? { list: [] } : JSON.parse(listContentRaw);
+
+      listContent.list.push(item);
+
+      localStorage.setItem(listName, JSON.stringify(listContent));
+
+      updateList(listName, listName); // bad
+    }
+
+    function removeListItem(itemName, listName) {
+      const listContentRaw = localStorage.getItem(listName);
+
+      let listContent = JSON.parse(listContentRaw);
+
+      listContent.list.splice(
+        listContent.list.findIndex((item) => {
+          return item.name === itemName;
+        }),
+        1
+      );
+
+      localStorage.setItem(listName, JSON.stringify(listContent));
+
+      updateList(listName, listName); // bad
+    }
+
+    updateList("parts", "parts");
+  </script>
+</html>

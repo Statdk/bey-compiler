@@ -1,11 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import ListBox from "./components/ListBox.vue";
 
-console.log("we r here now.");
+let foo = ["eef", "freef"];
 </script>
 
 <template>
-  <div>Haii</div>
+  <ListBox list="{{foo}}"></ListBox>
 </template>
 
 <style scoped>

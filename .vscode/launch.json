@@ -8,6 +8,13 @@
       "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
       "skipFiles": ["<node_internals>/**"],
       "type": "node"
+    },
+    {
+      "name": "Firefox Main",
+      "type": "firefox",
+      "request": "launch",
+      "reAttach": true,
+      "file": "${workspaceFolder}/index.html"
     }
   ],
   "compounds": []
