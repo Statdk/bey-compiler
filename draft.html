@@ -3,6 +3,7 @@
   <head>
     <title>Bey Compiler</title>
     <link rel="stylesheet" href="./src/style.css" />
+    <script type="module" src="./draft.js"></script>
     <style>
       h2 {
         text-align: center;
@@ -100,67 +101,5 @@
       <div class="ListBox" id="parts"></div>
     </div>
   </body>
-  <script>
-    function updateList(elementID, listName) {
-      const listContentRaw = localStorage.getItem(listName);
-
-      if (listContentRaw === null) {
-        localStorage.setItem(listName, JSON.stringify({ list: [] }));
-        console.error(`${listName} is null`);
-        return;
-      }
-
-      let listContent = JSON.parse(listContentRaw);
-
-      const listElement = document.getElementById(elementID);
-      listElement.innerHTML = "";
-
-      console.log(listContent);
-      for (item of listContent.list) {
-        listElement.innerHTML += `
-        <div class="ListItem">
-          <div class="ListItemName">${item.name}</div>
-          <ul>
-            <li>Type: ${item.type}</li>
-            <li>Gen: ${item.generation}</li>
-          </ul>
-          <button onclick="removeListItem('${item.name}', '${listName}')">Delete</button>
-        </div>`;
-      }
-    }
-
-    function createListItem(item, listName) {
-      console.log(item);
-      console.log(listName);
-      const listContentRaw = localStorage.getItem(listName);
-
-      let listContent =
-        listContentRaw === null ? { list: [] } : JSON.parse(listContentRaw);
-
-      listContent.list.push(item);
-
-      localStorage.setItem(listName, JSON.stringify(listContent));
-
-      updateList(listName, listName); // bad
-    }
-
-    function removeListItem(itemName, listName) {
-      const listContentRaw = localStorage.getItem(listName);
-
-      let listContent = JSON.parse(listContentRaw);
-
-      listContent.list.splice(
-        listContent.list.findIndex((item) => {
-          return item.name === itemName;
-        }),
-        1
-      );
-
-      localStorage.setItem(listName, JSON.stringify(listContent));
-
-      updateList(listName, listName); // bad
-    }
-
-    updateList("parts", "parts");
-  </script>
+  <!-- <script src="./src/js/PartDB.js"></script> -->
 </html>

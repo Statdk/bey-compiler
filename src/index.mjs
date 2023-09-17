@@ -8,4 +8,3 @@ import app from "./app.vue";
 console.log("Hello");
 
 createApp(app).mount("#app");
-

@@ -1,0 +1,62 @@
+{
+  "systems": {
+    "4 Layer": {
+      "Bit Chip": {
+        "required": true
+      },
+      "Attack Ring": {
+        "required": true
+      },
+      "Weight Disk": {
+        "required": true
+      },
+      "Blade Base": {
+        "required": true
+      }
+    },
+    "4D": {
+      "Face": {
+        "required": true
+      },
+      "4D Clear Wheel": {
+        "required": true
+      },
+      "PC Frame": {
+        "required": true
+      },
+      "Metal Frame": {
+        "required": true
+      },
+      "Core": {
+        "required": true
+      },
+      "4D Bottom": {
+        "required": true
+      }
+    },
+    "Burst Ultimate": {
+      "Blade": {
+        "required": true
+      },
+      "Core": {
+        "required": true
+      },
+      "Armor": {
+        "required": true
+      },
+      "Disc": {
+        "required": true
+      },
+      "Driver": {
+        "required": true
+      },
+      "Chip": {
+        "required": true
+      },
+      "Gear": {
+        "required": true
+      }
+    }
+  },
+  "parts": ["Blade", "Core", "Armor", "Disc", "Driver", "Chip", "Gear"]
+}
